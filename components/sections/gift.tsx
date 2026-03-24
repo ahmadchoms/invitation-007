@@ -4,17 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Copy, Check, Gift } from "lucide-react";
 import { toast } from "sonner";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: {
-    duration: 1,
-    delay,
-    ease: [0.25, 0.46, 0.45, 0.94] as const,
-  },
-  viewport: { once: true, margin: "-60px" },
-});
+import { siteConfig } from "@/data/config";
+import { fadeUp } from "@/lib/motion";
 
 interface BankCardProps {
   bank: string;
@@ -89,30 +80,26 @@ export default function WeddingGift() {
       <motion.div {...fadeUp(0)} className="text-center mb-6">
         <Gift size={20} className="mx-auto mb-4 text-midnight-accent" />
         <p className="font-manrope text-[0.65rem] tracking-[0.4em] text-midnight-muted uppercase mb-4">
-          Digital Angpao
+          {siteConfig.content.gift.subtitle}
         </p>
         <h2 className="font-cinzel text-[clamp(1.6rem,4vw,2.4rem)] text-midnight-primary tracking-widest mb-4">
-          Wedding Gift
+          {siteConfig.content.gift.title}
         </h2>
         <p className="font-manrope text-sm text-midnight-muted/60 max-w-100 mx-auto mb-16 leading-relaxed">
-          Doa restu Anda adalah hadiah terindah bagi kami. Namun jika Anda ingin
-          memberikan tanda kasih, berikut informasi rekening kami.
+          {siteConfig.content.gift.description}
         </p>
       </motion.div>
 
       <div className="flex gap-6 justify-center flex-wrap">
-        <BankCard
-          bank="Bank Central Asia (BCA)"
-          accountNumber="1234 5678 90"
-          accountHolder="Raka Pratama"
-          delay={0.1}
-        />
-        <BankCard
-          bank="Bank Mandiri"
-          accountNumber="0987 6543 21"
-          accountHolder="Andini Putri"
-          delay={0.25}
-        />
+        {siteConfig.gift.accounts.map((account, index) => (
+          <BankCard
+            key={account.accountNumber}
+            bank={account.bank}
+            accountNumber={account.accountNumber}
+            accountHolder={account.accountHolder}
+            delay={0.1 + index * 0.15}
+          />
+        ))}
       </div>
     </section>
   );

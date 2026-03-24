@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { siteConfig } from "@/data/config";
 
 interface WelcomeProps {
   onOpen: () => void;
@@ -31,35 +32,6 @@ export default function WelcomeCover({ onOpen }: WelcomeProps) {
         className="absolute bottom-10 left-[10%] right-[10%] h-[0.5px] bg-midnight-accent/40 origin-right"
       />
 
-      {/* Recipient name */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.6 }}
-        className="font-manrope text-[0.75rem] tracking-[0.3em] text-midnight-muted uppercase mb-10"
-      >
-        Kepada Yth.
-      </motion.p>
-
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.8 }}
-        className="font-cinzel text-[clamp(1.5rem,4vw,2.5rem)] text-midnight-primary mb-14 leading-relaxed"
-      >
-        Bapak / Ibu / Saudara/i
-        <br />
-        <span className="text-midnight-accent">Nama Tamu Undangan</span>
-      </motion.p>
-
-      {/* Divider */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="w-10 h-[0.5px] bg-midnight-accent/60 mb-14"
-      />
-
       {/* The Wedding Of label */}
       <motion.p
         initial={{ opacity: 0 }}
@@ -67,7 +39,7 @@ export default function WelcomeCover({ onOpen }: WelcomeProps) {
         transition={{ duration: 1, delay: 1.1 }}
         className="font-manrope text-[0.7rem] tracking-[0.35em] text-midnight-muted uppercase mb-4"
       >
-        The Wedding Of
+        {siteConfig.content.welcome.label}
       </motion.p>
 
       <motion.h1
@@ -76,7 +48,8 @@ export default function WelcomeCover({ onOpen }: WelcomeProps) {
         transition={{ duration: 1.2, delay: 1.2, ease: "easeOut" }}
         className="font-cinzel text-[clamp(2rem,6vw,3.5rem)] text-midnight-primary tracking-wider leading-none mb-12"
       >
-        Raka & Andini
+        {siteConfig.couple.groom.name} {siteConfig.couple.joinWord}{" "}
+        {siteConfig.couple.bride.name}
       </motion.h1>
 
       {/* Open Invitation Button */}
@@ -92,7 +65,7 @@ export default function WelcomeCover({ onOpen }: WelcomeProps) {
                    cursor-pointer transition-all duration-300 shadow-[0_0_30px_rgba(var(--midnight-accent),0.08)]
                    hover:bg-midnight-accent/10 hover:shadow-[0_0_40px_rgba(var(--midnight-accent),0.2)]"
       >
-        Buka Undangan
+        {siteConfig.content.welcome.buttonText}
       </motion.button>
 
       {/* Subtle scroll hint */}
@@ -102,7 +75,7 @@ export default function WelcomeCover({ onOpen }: WelcomeProps) {
         transition={{ duration: 1, delay: 2 }}
         className="absolute bottom-20 font-manrope text-[0.6rem] tracking-[0.25em] text-midnight-muted/70 uppercase"
       >
-        Sentuh untuk membuka
+        {siteConfig.content.welcome.scrollHint}
       </motion.p>
     </motion.div>
   );

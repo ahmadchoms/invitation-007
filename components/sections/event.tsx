@@ -2,17 +2,8 @@
 
 import { motion } from "framer-motion";
 import { MapPin, Clock, Calendar } from "lucide-react";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: {
-    duration: 1,
-    delay,
-    ease: [0.25, 0.46, 0.45, 0.94] as const,
-  },
-  viewport: { once: true, margin: "-60px" },
-});
+import { siteConfig } from "@/data/config";
+import { fadeUp } from "@/lib/motion";
 
 interface EventCardProps {
   type: string;
@@ -82,7 +73,7 @@ function EventCard({
         className="inline-flex items-center justify-center gap-2 mt-2 py-3 border-[0.5px] border-midnight-accent/40 text-midnight-accent font-manrope text-[0.65rem] tracking-[0.25em] uppercase transition-all duration-300 hover:bg-midnight-accent/10 hover:border-midnight-accent/70"
       >
         <MapPin size={12} />
-        Lihat Lokasi
+        {siteConfig.content.event.seeLocation}
       </a>
     </motion.div>
   );
@@ -93,34 +84,26 @@ export default function EventDetails() {
     <section className="py-28 px-8 max-w-225 mx-auto border-b border-midnight-accent/12 bg-midnight-background">
       <motion.div {...fadeUp(0)} className="text-center mb-20">
         <p className="font-manrope text-[0.65rem] tracking-[0.4em] text-midnight-muted uppercase mb-4">
-          Waktu & Tempat
+          {siteConfig.content.event.subtitle}
         </p>
         <h2 className="font-cinzel text-[clamp(1.6rem,4vw,2.4rem)] text-midnight-primary tracking-widest">
-          Detail Acara
+          {siteConfig.content.event.title}
         </h2>
       </motion.div>
 
       <div className="flex gap-8 justify-center flex-wrap">
-        <EventCard
-          type="Akad Nikah"
-          date="Sabtu, 12 Oktober 2024"
-          time="08.00 — 10.00"
-          venue="Masjid Al-Ikhlas"
-          address={"Jl. Raya Kebon Jeruk No. 45,\nJakarta Barat, DKI Jakarta"}
-          mapsUrl="https://maps.google.com"
-          delay={0.1}
-        />
-        <EventCard
-          type="Resepsi"
-          date="Sabtu, 12 Oktober 2024"
-          time="11.00 — 15.00"
-          venue="Ballroom Grand Hyatt Jakarta"
-          address={
-            "Jl. M.H. Thamrin No. Kav. 28-30,\nJakarta Pusat, DKI Jakarta"
-          }
-          mapsUrl="https://maps.google.com"
-          delay={0.25}
-        />
+        {siteConfig.event.ceremonies.map((ceremony, index) => (
+          <EventCard
+            key={ceremony.type}
+            type={ceremony.type}
+            date={ceremony.date}
+            time={ceremony.time}
+            venue={ceremony.venue}
+            address={ceremony.address}
+            mapsUrl={ceremony.mapsUrl}
+            delay={0.1 + index * 0.15}
+          />
+        ))}
       </div>
     </section>
   );

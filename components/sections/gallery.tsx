@@ -1,17 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: {
-    duration: 1,
-    delay,
-    ease: [0.25, 0.46, 0.45, 0.94] as const,
-  },
-  viewport: { once: true, margin: "-60px" },
-});
+import { siteConfig } from "@/data/config";
+import { fadeUp } from "@/lib/motion";
 
 interface PhotoPlaceholderProps {
   label: string;
@@ -51,10 +42,10 @@ export default function Gallery() {
     <section className="py-28 px-8 max-w-225 mx-auto border-b border-midnight-accent/12 bg-midnight-background">
       <motion.div {...fadeUp(0)} className="text-center mb-16">
         <p className="font-manrope text-[0.65rem] tracking-[0.4em] text-midnight-muted uppercase mb-4">
-          Kenangan
+          {siteConfig.content.gallery.subtitle}
         </p>
         <h2 className="font-cinzel text-[clamp(1.6rem,4vw,2.4rem)] text-midnight-primary tracking-widest">
-          Galeri Foto
+          {siteConfig.content.gallery.title}
         </h2>
       </motion.div>
 
@@ -75,7 +66,7 @@ export default function Gallery() {
         {...fadeUp(0.4)}
         className="text-center mt-8 font-manrope text-[0.65rem] tracking-[0.2em] text-midnight-muted/50 uppercase"
       >
-        Ganti dengan foto asli Anda
+        {siteConfig.content.gallery.placeholderHelper}
       </motion.p>
     </section>
   );

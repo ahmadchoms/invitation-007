@@ -3,6 +3,7 @@ import { Cinzel, Manrope } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
+import { siteConfig } from "@/data/config";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -19,12 +20,11 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "The Wedding Of Raka & Andini",
-  description: "Undangan Pernikahan Digital — Midnight Elegance",
+  title: siteConfig.meta.title,
+  description: siteConfig.meta.description,
   openGraph: {
-    title: "The Wedding Of Raka & Andini",
-    description:
-      "Kami mengundang Anda untuk hadir merayakan momen sakral kami.",
+    title: siteConfig.meta.title,
+    description: siteConfig.meta.ogDescription,
     type: "website",
   },
 };

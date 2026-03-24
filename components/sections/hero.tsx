@@ -2,17 +2,10 @@
 
 import { motion } from "framer-motion";
 import CountdownTimer from "../countdown-timer";
+import { siteConfig } from "@/data/config";
+import { fadeUpCustom } from "@/lib/motion";
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: {
-    duration: 1.1,
-    delay,
-    ease: [0.25, 0.46, 0.45, 0.94] as const,
-  },
-  viewport: { once: true },
-});
+const fadeUp = (delay = 0) => fadeUpCustom(delay, 40, "0px", 1.1);
 
 export default function Hero() {
   return (
@@ -32,7 +25,7 @@ export default function Hero() {
           <div className="absolute inset-4 border border-midnight-accent/25 rotate-45" />
           {/* Initials */}
           <span className="font-cinzel text-[1.8rem] text-midnight-accent z-10 tracking-wider">
-            R&A
+            {siteConfig.couple.initials}
           </span>
         </div>
       </motion.div>
@@ -42,7 +35,7 @@ export default function Hero() {
         {...fadeUp(0.25)}
         className="font-manrope text-[0.68rem] tracking-[0.35em] text-midnight-muted uppercase"
       >
-        The Wedding Of
+        {siteConfig.content.hero.label}
       </motion.p>
 
       {/* Bride & Groom names */}
@@ -51,7 +44,7 @@ export default function Hero() {
           {...fadeUp(0.4)}
           className="font-cinzel text-[clamp(2.5rem,8vw,5rem)] text-midnight-primary tracking-wider leading-[1.15]"
         >
-          Raka
+          {siteConfig.couple.groom.name}
         </motion.h2>
 
         <motion.p
@@ -65,7 +58,7 @@ export default function Hero() {
           {...fadeUp(0.6)}
           className="font-cinzel text-[clamp(2.5rem,8vw,5rem)] text-midnight-primary tracking-wider leading-[1.15]"
         >
-          Andini
+          {siteConfig.couple.bride.name}
         </motion.h2>
       </div>
 
@@ -76,7 +69,7 @@ export default function Hero() {
       >
         <div className="w-10 h-[0.5px] bg-midnight-accent/50" />
         <p className="font-manrope text-[0.72rem] tracking-[0.25em] text-midnight-muted uppercase">
-          Sabtu, 12 Oktober 2024
+          {siteConfig.event.displayDate}
         </p>
         <div className="w-10 h-[0.5px] bg-midnight-accent/50" />
       </motion.div>
@@ -86,12 +79,12 @@ export default function Hero() {
         {...fadeUp(0.9)}
         className="mt-8 font-manrope text-[0.75rem] text-midnight-muted tracking-widest italic"
       >
-        Jakarta, Indonesia
+        {siteConfig.event.location}
       </motion.p>
 
       {/* Live countdown */}
       <div className="mt-8">
-        <CountdownTimer targetDate={new Date("2025-10-12T08:00:00+07:00")} />
+        <CountdownTimer targetDate={new Date(siteConfig.event.date)} />
       </div>
 
       {/* Animated scroll cue */}
@@ -108,7 +101,7 @@ export default function Hero() {
       >
         <div className="w-px h-9 bg-linear-to-b from-midnight-accent/50 to-transparent" />
         <span className="font-manrope text-[0.48rem] tracking-[0.35em] text-midnight-muted uppercase">
-          Scroll
+          {siteConfig.content.hero.scrollHint}
         </span>
       </motion.div>
     </section>

@@ -2,17 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
+import { siteConfig } from "@/data/config";
+import { fadeUpCustom } from "@/lib/motion";
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: {
-    duration: 1,
-    delay,
-    ease: [0.25, 0.46, 0.45, 0.94] as const,
-  },
-  viewport: { once: true, margin: "-40px" },
-});
+const fadeUp = (delay = 0) => fadeUpCustom(delay, 30, "-40px", 1);
 
 export default function Footer() {
   return (
@@ -28,27 +21,23 @@ export default function Footer() {
       <motion.div {...fadeUp(0.1)} className="mb-12">
         <div className="w-16 h-16 border-[0.5px] border-midnight-accent/35 rotate-45 mx-auto flex items-center justify-center">
           <span className="font-cinzel text-base text-midnight-accent/70 -rotate-45">
-            R&A
+            {siteConfig.couple.initials}
           </span>
         </div>
       </motion.div>
 
       <motion.p
         {...fadeUp(0.2)}
-        className="font-manrope text-[clamp(0.8rem,2vw,0.9rem)] text-midnight-muted leading-loose max-w-135 mx-auto mb-6 italic"
+        className="font-manrope text-[clamp(0.8rem,2vw,0.9rem)] text-midnight-muted leading-loose max-w-135 mx-auto mb-6 italic whitespace-pre-line"
       >
-        Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
-        <br />
-        Bapak / Ibu / Saudara/i berkenan hadir untuk memberikan
-        <br />
-        doa restu kepada kami.
+        {siteConfig.content.footer.closingMessage}
       </motion.p>
 
       <motion.p
         {...fadeUp(0.3)}
         className="font-cinzel text-base text-midnight-accent/70 tracking-widest mb-16"
       >
-        Raka &amp; Andini
+        {siteConfig.couple.groom.name} &amp; {siteConfig.couple.bride.name}
       </motion.p>
 
       <motion.div
@@ -64,14 +53,14 @@ export default function Footer() {
         className="flex items-center justify-center gap-2"
       >
         <span className="font-manrope text-[0.6rem] tracking-[0.3em] text-midnight-muted/40 uppercase">
-          Created with
+          {siteConfig.content.footer.createdWith}
         </span>
         <Heart size={9} className="fill-red-900 text-red-900" />
         <span className="font-manrope text-[0.6rem] tracking-[0.3em] text-midnight-muted/40 uppercase">
-          by
+          {siteConfig.content.footer.by}
         </span>
         <span className="font-cinzel text-[0.65rem] tracking-widest text-midnight-muted/60">
-          Chozy Space
+          {siteConfig.branding.name}
         </span>
       </motion.div>
 

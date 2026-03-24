@@ -10,6 +10,7 @@ import EventDetails from "@/components/sections/event";
 import Gallery from "@/components/sections/gallery";
 import WeddingGift from "@/components/sections/gift";
 import Footer from "@/components/sections/footer";
+import { siteConfig } from "@/data/config";
 
 export default function Home() {
   const [isOpened, setIsOpened] = useState(false);
@@ -42,13 +43,13 @@ export default function Home() {
       </AnimatePresence>
 
       <Hero />
-      <SectionDivider label="Mempelai" />
+      <SectionDivider label={siteConfig.content.sectionLabels.couple} />
       <CoupleProfile />
-      <SectionDivider label="Acara" />
+      <SectionDivider label={siteConfig.content.sectionLabels.event} />
       <EventDetails />
-      <SectionDivider label="Kenangan" />
+      <SectionDivider label={siteConfig.content.sectionLabels.gallery} />
       <Gallery />
-      <SectionDivider label="Hadiah" />
+      <SectionDivider label={siteConfig.content.sectionLabels.gift} />
       <WeddingGift />
       <SectionDivider />
       <Footer />

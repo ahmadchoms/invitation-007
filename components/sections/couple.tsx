@@ -1,17 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { siteConfig } from "@/data/config";
+import { fadeUpCustom } from "@/lib/motion";
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 50 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: {
-    duration: 1.1,
-    delay,
-    ease: [0.25, 0.46, 0.45, 0.94] as const,
-  },
-  viewport: { once: true, margin: "-80px" },
-});
+const fadeUp = (delay = 0) => fadeUpCustom(delay, 50, "-80px", 1.1);
 
 interface PersonCardProps {
   name: string;
@@ -60,7 +53,7 @@ function PersonCard({
         <div className="w-7.5 h-[0.5px] bg-midnight-accent/40 mx-auto my-1.5" />
 
         <p className="font-manrope text-[0.75rem] text-midnight-muted leading-relaxed">
-          Putra/Putri dari
+          {siteConfig.content.couple.childOf}
           <br />
           <span className="text-midnight-primary/90">Bapak {fatherName}</span>
           <br />
@@ -77,19 +70,19 @@ export default function CoupleProfile() {
     <section className="py-28 px-8 max-w-225 mx-auto border-b border-midnight-accent/12 bg-midnight-background">
       <motion.div {...fadeUp(0)} className="text-center mb-20">
         <p className="font-manrope text-[0.65rem] tracking-[0.4em] text-midnight-muted uppercase mb-4">
-          Mempelai
+          {siteConfig.content.couple.subtitle}
         </p>
         <h2 className="font-cinzel text-[clamp(1.6rem,4vw,2.4rem)] text-midnight-primary tracking-widest">
-          The Couple
+          {siteConfig.content.couple.title}
         </h2>
       </motion.div>
 
       <div className="flex flex-wrap justify-center items-start gap-12">
         <PersonCard
-          name="Raka Pratama"
-          fullTitle="Putra Pertama"
-          fatherName="Ahmad Santoso"
-          motherName="Sri Wahyuni"
+          name={siteConfig.couple.groom.fullName}
+          fullTitle={siteConfig.couple.groom.title}
+          fatherName={siteConfig.couple.groom.fatherName}
+          motherName={siteConfig.couple.groom.motherName}
           order={0}
         />
 
@@ -98,15 +91,15 @@ export default function CoupleProfile() {
           className="flex items-center pt-20 shrink-0"
         >
           <span className="font-cinzel text-4xl text-midnight-accent/50">
-            &
+            {siteConfig.couple.joinWord}
           </span>
         </motion.div>
 
         <PersonCard
-          name="Andini Putri"
-          fullTitle="Putri Pertama"
-          fatherName="Budi Hartono"
-          motherName="Ratna Dewi"
+          name={siteConfig.couple.bride.fullName}
+          fullTitle={siteConfig.couple.bride.title}
+          fatherName={siteConfig.couple.bride.fatherName}
+          motherName={siteConfig.couple.bride.motherName}
           order={2}
         />
       </div>
