@@ -50,7 +50,7 @@ export const siteConfig = {
     joinWord: "&", // "Raka & Andini" vs "Raka and Andini"
   },
   event: {
-    date: "2024-10-12T08:00:00+07:00", // ISO string for countdown
+    date: "2027-10-12T08:00:00+07:00", // ISO string for countdown
     displayDate: "Sabtu, 12 Oktober 2024",
     location: "Jakarta, Indonesia",
     ceremonies: [

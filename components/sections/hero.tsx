@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import CountdownTimer from "../countdown-timer";
 import { siteConfig } from "@/data/config";
 import { fadeUpCustom } from "@/lib/motion";
 
@@ -81,11 +80,6 @@ export default function Hero() {
       >
         {siteConfig.event.location}
       </motion.p>
-
-      {/* Live countdown */}
-      <div className="mt-8">
-        <CountdownTimer targetDate={new Date(siteConfig.event.date)} />
-      </div>
 
       {/* Animated scroll cue */}
       <motion.div
